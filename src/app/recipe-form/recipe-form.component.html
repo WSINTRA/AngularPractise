@@ -1,0 +1,12 @@
+<div class="container-fluid">
+    <input class="search" [(ngModel)]="recipeTitle" placeholder=recipeTitle>
+ 
+    <input class="search" [(ngModel)]="recipeCreator" placeholder=recipeCreator>
+ 
+    <input class="search" [(ngModel)]="recipeDescription" placeholder=recipeDescription>
+    
+    <button (click)='handleNewRecipe(recipeCreator, recipeTitle, recipeDescription)'>Submit and add steps</button>
+
+
+    {{currentRecipe.title}}
+</div>
