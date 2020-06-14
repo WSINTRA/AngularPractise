@@ -10,8 +10,8 @@ export class Steps {
         this.imageUrl = stepImageUrl;
         this.videoUrl = stepVideoUrl;
     }
-    title: String
-    description: String
-    imageUrl: String
-    videoUrl: String
+    title: string
+    description: string
+    imageUrl: string
+    videoUrl: string
 }

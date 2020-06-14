@@ -3,7 +3,7 @@ export class RecipeModel {
         repUser: string,
         repTitle: string,
         repDescription: string,
-        repSteps: object,
+        repSteps: any
     ) {
         this.user = repUser,
         this.title = repTitle;
@@ -13,6 +13,6 @@ export class RecipeModel {
     user: string;
     title: string;
     description: string;
-    steps: object;
+    steps: any;
 
 }

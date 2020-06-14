@@ -1,12 +1,28 @@
 <div class="container-fluid">
-    <input class="search" [(ngModel)]="recipeTitle" placeholder=recipeTitle>
- 
-    <input class="search" [(ngModel)]="recipeCreator" placeholder=recipeCreator>
- 
-    <input class="search" [(ngModel)]="recipeDescription" placeholder=recipeDescription>
-    
-    <button (click)='handleNewRecipe(recipeCreator, recipeTitle, recipeDescription)'>Submit and add steps</button>
+    <ul *ngFor="let recipe of allRecipes">
+        <li>{{recipe.title}}</li>
+    </ul>
+    <div *ngIf="createSteps" >
+        <input class="search" [(ngModel)]="stepTitle" placeholder=stepTitle>
 
+        <input class="search" [(ngModel)]="stepDescription" placeholder=stepDescription>
+ 
+        <input class="search" [(ngModel)]="stepImageUrl" placeholder=stepImageUrl>
 
-    {{currentRecipe.title}}
+        <input class="search" [(ngModel)]="stepVideoUrl" placeholder=stepVideoUrl>
+
+        <button (click)='handleNewStep(stepTitle, stepDescription, stepImageUrl, stepVideoUrl)'>Add New Step</button>
+     
+    </div>
+    <div *ngIf="!createSteps" >
+        <input class="search" [(ngModel)]="recipeTitle" placeholder=recipeTitle>
+ 
+        <input class="search" [(ngModel)]="recipeCreator" placeholder=recipeCreator>
+     
+        <input class="search" [(ngModel)]="recipeDescription" placeholder=recipeDescription>
+        
+        <button (click)='handleNewRecipe(recipeCreator, recipeTitle, recipeDescription)'>Create New Recipe</button>
+    </div>
+    {{editRecipe.title}}
+
 </div>

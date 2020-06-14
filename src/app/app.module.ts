@@ -10,9 +10,8 @@ import {MaterialModule} from './material/material.module';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { RecipeFormComponent } from './recipe-form/recipe-form.component';
-import { RecipeListComponent } from './recipe-list/recipe-list.component'
-import {NewRecipe} from './recipe.service';
-import {RecipeStep} from './recipeStep.service'
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,7 +19,6 @@ import {RecipeStep} from './recipeStep.service'
     LoginComponent,
     SignupComponent,
     RecipeFormComponent,
-    RecipeListComponent
   ],
   imports: [
     FormsModule,
@@ -30,7 +28,7 @@ import {RecipeStep} from './recipeStep.service'
     MaterialModule,
     ReactiveFormsModule
   ],
-  providers: [NewRecipe, RecipeStep],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
