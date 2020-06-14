@@ -12,7 +12,7 @@
         <input class="search" [(ngModel)]="stepVideoUrl" placeholder=stepVideoUrl>
 
         <button (click)='handleNewStep(stepTitle, stepDescription, stepImageUrl, stepVideoUrl)'>Add New Step</button>
-     
+        <button (click)='handleFinishedSteps()'>Finished</button>
     </div>
     <div *ngIf="!createSteps" >
         <input class="search" [(ngModel)]="recipeTitle" placeholder=recipeTitle>

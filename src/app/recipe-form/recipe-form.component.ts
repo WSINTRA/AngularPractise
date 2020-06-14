@@ -15,7 +15,6 @@ export class RecipeFormComponent {
   recipeTitle: string;
   recipeCreator: string;
   recipeDescription: string;
-  recipeSteps: any[] = [];
   allRecipes: any[] = [];
 
   //probably not the best way to do this but since I am just learning and trying to figure Angular out
@@ -30,7 +29,8 @@ export class RecipeFormComponent {
       return alert("Recipe must atleast have a title")
     }
     //Create a new recipe, push it onto the allRecipe array and change mode for recipe editing
-    let currentRecipe = new RecipeModel(userVal, titleVal, descriptionVal, this.recipeSteps)
+    //new Recipe should have User, Title, Description, Steps array
+    let currentRecipe = new RecipeModel(userVal, titleVal, descriptionVal, [])
     this.allRecipes.push(currentRecipe)
     this.editRecipe = currentRecipe;
     this.createSteps = true;
@@ -40,11 +40,14 @@ export class RecipeFormComponent {
   stepDescription: string
   stepImageUrl: string
   stepVideoUrl: string
-  stepPackage = new Steps(this.stepTitle, this.stepDescription, this.stepImageUrl, this.stepVideoUrl)
-
+  //Handle adding new steps once a recipe has been initialised
+  //Each new step is added to the current editRecipe steps array
   handleNewStep(stepTitleVal, stepDescriptionVal, stepImageUrlVal, stepVideoUrlVal ){
     let newStep = new Steps(stepTitleVal, stepDescriptionVal, stepImageUrlVal, stepVideoUrlVal)
     this.editRecipe.steps.push(newStep)
-    console.log(this.editRecipe);
+  }
+  //When finished return back to add recipe form
+  handleFinishedSteps(){
+    this.createSteps = false
   }
 }
