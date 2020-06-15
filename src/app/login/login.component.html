@@ -8,9 +8,5 @@
         <mat-label>password</mat-label>
         <input matInput type="password"placeholder="Password" [formControl]="loginPassControl">
       </mat-form-field>
-
-      <p>
-        Value: {{ loginNameControl.value }}<br>
-        Pass: {{ loginPassControl.value }}
-      </p>
+      <button mat-raised-button>Submit Login</button>
   </form>

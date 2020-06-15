@@ -1,0 +1,29 @@
+.recipe-page {
+padding: 3rem;
+  height: 100%;
+  display: grid;
+  
+  grid-template-columns: repeat(3, auto);
+  grid-template-rows: repeat(3, auto);
+}
+.recipe-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+.new-step{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.new-recipe{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }

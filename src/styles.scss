@@ -1,6 +1,4 @@
 /* You can add global styles to this file, and also import other style files */
-@mixin center-children {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+body {
+    background-color: #c7a1a1;
 }

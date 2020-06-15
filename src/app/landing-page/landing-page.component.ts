@@ -11,6 +11,9 @@ export class LandingPageComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  
+  switchLoginRegister(){
+    this.loginRegister = !this.loginRegister;
+  }
+  loginRegister: boolean = false;
 
 }

@@ -1,28 +1,94 @@
-<div class="container-fluid">
+<div class="recipe-page">
+  <div class="new-recipe" *ngIf="!createSteps">
+    <mat-form-field appearance="fill">
+      <mat-label>Author</mat-label>
+      <input
+        matInput
+        type="text"
+        [(ngModel)]="recipeCreator"
+        placeholder="Name of Author"
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Title</mat-label>
+      <input
+        matInput
+        [(ngModel)]="recipeTitle"
+        placeholder="Title for Recipe"
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Description</mat-label>
+      <textarea
+        matInput
+        [(ngModel)]="recipeDescription"
+        placeholder="Description for Recipe"
+      ></textarea>
+    </mat-form-field>
+
+    <button
+      mat-button
+      (click)="handleNewRecipe(recipeCreator, recipeTitle, recipeDescription)"
+    >
+      Create New Recipe
+    </button>
+  </div>
+
+  <div class="recipe-list">
+    <h3 *ngIf="allRecipes.length > 1">Header</h3>
     <ul *ngFor="let recipe of allRecipes">
-        <li>{{recipe.title}}</li>
+      <li>{{ recipe.title }}</li>
     </ul>
-    <div *ngIf="createSteps" >
-        <input class="search" [(ngModel)]="stepTitle" placeholder=stepTitle>
+  </div>
 
-        <input class="search" [(ngModel)]="stepDescription" placeholder=stepDescription>
- 
-        <input class="search" [(ngModel)]="stepImageUrl" placeholder=stepImageUrl>
+  <div class="new-step" *ngIf="createSteps">
+    <mat-form-field appearance="fill">
+      <mat-label>Step title</mat-label>
+      <input matInput [(ngModel)]="stepTitle" placeholder="Title for step" />
+    </mat-form-field>
 
-        <input class="search" [(ngModel)]="stepVideoUrl" placeholder=stepVideoUrl>
+    <mat-form-field appearance="fill">
+      <mat-label>Step Description</mat-label>
+      <textarea
+        matInput
+        [(ngModel)]="stepDescription"
+        placeholder="Describe this step"
+      ></textarea>
+    </mat-form-field>
 
-        <button (click)='handleNewStep(stepTitle, stepDescription, stepImageUrl, stepVideoUrl)'>Add New Step</button>
-        <button (click)='handleFinishedSteps()'>Finished</button>
-    </div>
-    <div *ngIf="!createSteps" >
-        <input class="search" [(ngModel)]="recipeTitle" placeholder=recipeTitle>
- 
-        <input class="search" [(ngModel)]="recipeCreator" placeholder=recipeCreator>
-     
-        <input class="search" [(ngModel)]="recipeDescription" placeholder=recipeDescription>
-        
-        <button (click)='handleNewRecipe(recipeCreator, recipeTitle, recipeDescription)'>Create New Recipe</button>
-    </div>
-    {{editRecipe.title}}
+    <mat-form-field appearance="fill">
+      <mat-label>Step Image URL</mat-label>
+      <input
+        matInput
+        [(ngModel)]="stepImageUrl"
+        placeholder="Enter the url for an image you want with this step(optional)"
+      />
+    </mat-form-field>
 
+    <mat-form-field appearance="fill">
+      <mat-label>Step Video URL</mat-label>
+      <input
+        matInput
+        [(ngModel)]="stepVideoUrl"
+        placeholder="Url for a video you want to embed with this step"
+      />
+    </mat-form-field>
+
+    <button
+      mat-button
+      (click)="
+        handleNewStep(stepTitle, stepDescription, stepImageUrl, stepVideoUrl)
+      "
+    >
+      Add New Step
+    </button>
+    <button mat-button (click)="handleFinishedSteps()">Finished</button>
+  </div>
+  <div>
+    <ul *ngFor="let step of showSteps">
+      <li>{{ step.title }}</li>
+    </ul>
+  </div>
 </div>
