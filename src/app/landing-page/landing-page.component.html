@@ -1,13 +1,23 @@
-<div class="login-container">
-  <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
-    <mat-button-toggle (click)="switchLoginRegister()" value="Login"
-      >Login or Signup ?</mat-button-toggle
-    >
-  </mat-button-toggle-group>
-  <div *ngIf="loginRegister">
-    <app-login></app-login>
-  </div>
-  <div *ngIf="!loginRegister">
-    <app-signup></app-signup>
-  </div>
+<div *ngIf="isLoggedIn | async; else elseBlock;">
+  <h2>Create a Recipe</h2>
+  <app-recipe-form></app-recipe-form>
+  <button>Logout</button>
+  <button>Save Recipe</button>
 </div>
+
+<ng-template #elseBlock>
+  <div class="login-container">
+    <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+      <mat-button-toggle (click)="switchLoginRegister()" value="Login"
+        >Login or Signup ?</mat-button-toggle
+      >
+    </mat-button-toggle-group>
+    <div *ngIf="loginRegister">
+      <app-login></app-login>
+    </div>
+    <div *ngIf="!loginRegister">
+      <app-signup></app-signup>
+    </div>
+  </div>
+</ng-template>
+

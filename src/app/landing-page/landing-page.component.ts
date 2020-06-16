@@ -1,4 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
+import {SailsService} from '../sailsBackEnd.service';
+import { Observable } from "rxjs";
 
 @Component({
   selector: 'app-landing-page',
@@ -6,9 +8,11 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./landing-page.component.scss']
 })
 export class LandingPageComponent implements OnInit {
-
-  constructor() { }
-
+  isLoggedIn : Observable<boolean>;
+  constructor(private _sails:SailsService) {
+    this.isLoggedIn = _sails.isLoggedIn();
+  }
+  
   ngOnInit(): void {
   }
   switchLoginRegister(){

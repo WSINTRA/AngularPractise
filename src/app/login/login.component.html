@@ -1,12 +1,18 @@
+<h2>LOGIN</h2>
 <form class="login-form">
-    <mat-form-field class="login-full-width">
-      <mat-label>name</mat-label>
-      
-      <input matInput placeholder="Your name" [formControl]="loginNameControl">
-    </mat-form-field>
-    <mat-form-field class="login-full-width">
-        <mat-label>password</mat-label>
-        <input matInput type="password"placeholder="Password" [formControl]="loginPassControl">
-      </mat-form-field>
-      <button mat-raised-button (click)="onSubmit()">Submit Login</button>
-  </form>
+  <mat-form-field class="login-full-width">
+    <mat-label>name</mat-label>
+
+    <input matInput placeholder="Your name" [formControl]="loginNameControl" />
+  </mat-form-field>
+  <mat-form-field class="login-full-width">
+    <mat-label>password</mat-label>
+    <input
+      matInput
+      type="password"
+      placeholder="Password"
+      [formControl]="loginPassControl"
+    />
+  </mat-form-field>
+  <button mat-raised-button (click)="onSubmit()">Submit Login</button>
+</form>

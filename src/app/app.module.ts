@@ -15,6 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
 import {NewRecipe} from './recipe.service';
 import {SailsService} from './sailsBackEnd.service';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +32,8 @@ import {SailsService} from './sailsBackEnd.service';
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    
   ],
   providers: [NewRecipe, SailsService],
   bootstrap: [AppComponent]
