@@ -13,4 +13,8 @@ export class SignupComponent implements OnInit {
   }
   signupNameControl = new FormControl('');
   signupPassControl = new FormControl('');
+  onSubmit() {
+    //make this submit the values to the backend
+    console.log(this.signupNameControl.value, this.signupPassControl);
+  }
 }

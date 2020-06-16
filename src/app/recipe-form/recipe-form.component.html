@@ -28,16 +28,12 @@
       ></textarea>
     </mat-form-field>
 
-    <button
-      mat-button
-      (click)="handleNewRecipe(recipeCreator, recipeTitle, recipeDescription)"
-    >
-      Create New Recipe
-    </button>
+    <button mat-button (click)="newRecipeMethod(recipeCreator, recipeTitle, recipeDescription)">Create Recipe Steps</button>
   </div>
 
   <div class="recipe-list">
     <h3 *ngIf="allRecipes.length > 1">Header</h3>
+    <!-- REPLACE THIS WITH THE FETCHED ARRAY OF USER RECIPES -->
     <ul *ngFor="let recipe of allRecipes">
       <li>{{ recipe.title }}</li>
     </ul>
@@ -79,7 +75,7 @@
     <button
       mat-button
       (click)="
-        handleNewStep(stepTitle, stepDescription, stepImageUrl, stepVideoUrl)
+        newStepsMethod(stepTitle, stepDescription, stepImageUrl, stepVideoUrl)
       "
     >
       Add New Step
@@ -91,4 +87,5 @@
       <li>{{ step.title }}</li>
     </ul>
   </div>
+
 </div>

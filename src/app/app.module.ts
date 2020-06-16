@@ -10,7 +10,9 @@ import {MaterialModule} from './material/material.module';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { RecipeFormComponent } from './recipe-form/recipe-form.component';
-
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { HttpClientModule } from '@angular/common/http';
+import {NewRecipe} from './recipe.service';
 
 @NgModule({
   declarations: [
@@ -19,16 +21,18 @@ import { RecipeFormComponent } from './recipe-form/recipe-form.component';
     LoginComponent,
     SignupComponent,
     RecipeFormComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     FormsModule,
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [NewRecipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,13 +1,12 @@
 
-<form class="signup-form">
+<form class="signup-form" (ngSubmit)="onSubmit()" >
     <mat-form-field class="login-full-width">
-      <mat-label>name or email</mat-label>
-      
-      <input matInput placeholder="Your name or email" [formControl]="signupNameControl">
+      <mat-label>name</mat-label>
+      <input matInput placeholder="Your email" [formControl]="signupNameControl">
     </mat-form-field>
     <mat-form-field class="login-full-width">
         <mat-label>password</mat-label>
         <input matInput type="password"placeholder="Password" [formControl]="signupPassControl">
       </mat-form-field>
-      <button mat-raised-button>Submit new user</button>
+      <button mat-raised-button>Submit Signup</button>
   </form>
