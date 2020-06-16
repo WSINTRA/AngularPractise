@@ -13,6 +13,7 @@ import { RecipeFormComponent } from './recipe-form/recipe-form.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { HttpClientModule } from '@angular/common/http';
 import {NewRecipe} from './recipe.service';
+import {SailsService} from './sailsBackEnd.service';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,7 @@ import {NewRecipe} from './recipe.service';
     MaterialModule,
     ReactiveFormsModule
   ],
-  providers: [NewRecipe],
+  providers: [NewRecipe, SailsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

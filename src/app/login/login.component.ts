@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import {SailsService} from '../sailsBackEnd.service';
 
 @Component({
   selector: 'app-login',
@@ -8,10 +9,17 @@ import { FormControl } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _submit:SailsService) { }
 
   ngOnInit(): void {
   }
   loginNameControl = new FormControl('');
   loginPassControl = new FormControl('');
+
+  onSubmit(){
+    let username = this.loginNameControl.value
+    let password = this.loginPassControl.value 
+    this._submit.userLogin(username, password);
+  }
+
 }
