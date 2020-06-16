@@ -33,7 +33,12 @@
 
   <div class="recipe-list">
     <h3 *ngIf="allRecipes.length > 1">Header</h3>
+    <button (click)="getRecipes()">GET RECIPES</button>
     <!-- REPLACE THIS WITH THE FETCHED ARRAY OF USER RECIPES -->
+    
+    <ul *ngFor="let recipe of loggedInUserDetails.recipes">
+      <li>{{ recipe.title }}</li>
+    </ul>
     <ul *ngFor="let recipe of allRecipes">
       <li>{{ recipe.title }}</li>
     </ul>

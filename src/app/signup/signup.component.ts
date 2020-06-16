@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import {SailsService} from '../sailsBackEnd.service';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -7,7 +8,7 @@ import { FormControl } from '@angular/forms';
 })
 export class SignupComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _sails: SailsService) { }
 
   ngOnInit(): void {
   }
@@ -15,6 +16,8 @@ export class SignupComponent implements OnInit {
   signupPassControl = new FormControl('');
   onSubmit() {
     //make this submit the values to the backend
-    console.log(this.signupNameControl.value, this.signupPassControl);
+    let username = this.signupNameControl.value
+    let password = this.signupPassControl.value 
+    this._sails.userSignup(username, password);
   }
 }

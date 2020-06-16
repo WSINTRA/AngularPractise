@@ -4,12 +4,14 @@ import { BehaviorSubject, Observable } from "rxjs";
 @Injectable({
   providedIn: 'root'
 })
+
 export class SailsService {
   //opiniated framework wants me to use HttpClient ?
   constructor() { }
   private API_URL: string = "http://localhost:1337";
   //Learning that Angular uses observables for persisting variables across the app
   isLoginSubject = new BehaviorSubject<boolean>(this.hasToken());
+
   private hasToken(): boolean {
     if (localStorage['access_token']) {
       return true
@@ -23,11 +25,36 @@ export class SailsService {
   isLoggedIn(): Observable<boolean> {
     return this.isLoginSubject.asObservable();
   }
-
   ////
-  public JSONtoken: any;
-  public RecipeWithSteps: any;
+  private JSONtoken: any;
+  public userDataResponse: any;
+  ///
+  watchedUserData = new BehaviorSubject<any>(this.hasUserData());
+  private hasUserData(): any {
+    return this.userDataResponse;
+  }
+  userData(): Observable<any> {
+    return this.watchedUserData.asObservable();
+  }
+
+  /////////////////////////////////////////////////////////////
+  //Functions for interacting with backend
+  /////////////////////////////////////////////////////////////
+  getCurrentUserData() {
+    fetch(this.API_URL + '/recipes', {
+      method: "GET",
+      headers: {
+        'Content-Type': 'application/json',
+        'authorization': localStorage.getItem('access_token')
+      }
+    }).then(res => (res.json())).then(returnData => {
+      this.userDataResponse = { 'user': localStorage.getItem('username'), 'recipes': returnData }
+      this.watchedUserData.next(this.userDataResponse)
+    });
+  }
+  //////////////////////////////////////////////
   //Login Function using fetch is called from login component as a service
+  ///////////////////////////////////////////////
   userLogin(username, password) {
     //Create a data object for name and password to send to backend
     let data = { 'name': username, 'password': password }
@@ -40,30 +67,40 @@ export class SailsService {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(data)
-      }).then(res => res.json())
+        //Check that the server had any errors   
+      }).then(res => res.json()).catch(err => {
+        alert("Invalid username or password")
+
+      }
+      )
         .then(serverResponse => {
-          //Check that the server had any errors
-          if (serverResponse.err) {
-            return alert("Invalid username of password")
-          }
           //Save response as token and user details including the recipes associated with user
-          //FIGURE THIS OUT
           //Store token in localStorage, probably not the best but will work for now
           this.JSONtoken = serverResponse.token;
           localStorage.setItem('access_token', this.JSONtoken);
+          localStorage.setItem('username', serverResponse.user.name);
           this.isLoginSubject.next(true);
+          //Set the data to Observable
+          this.userDataResponse = { 'user': serverResponse.user.name, 'recipes': serverResponse.recipes }
+          this.watchedUserData.next(this.userDataResponse)
         })
     }
-    catch (err) {
-      console.log(err)
+    catch (error) {
+      alert(error)
     }
   }
-
+  /////////////////////////////////////////
+  //Simple logout function
+  ////////////////////////////
   logout() {
     localStorage.removeItem('access_token');
+    localStorage.removeItem('username');
     this.isLoginSubject.next(false);
   }
-  //TODO: Fix this becasue it is not DRY, too much repeated code from login
+  ////////////////////////////////////////////
+  // User signup function
+  // TODO: Fix this becasue it is not DRY, too much repeated code from login
+  /////////////////////////////////
   userSignup(username, password) {
     let data = { 'name': username, 'password': password }
     try {
@@ -85,13 +122,29 @@ export class SailsService {
           //Store token in localStorage, probably not the best but will work for now
           localStorage.setItem('access_token', this.JSONtoken);
           this.isLoginSubject.next(true);
+          //Set the data to Observable
+          this.userDataResponse = { 'user': serverResponse.user.name, 'recipes': serverResponse.recipes }
+          this.watchedUserData.next(this.userDataResponse)
         })
-
     }
     catch (err) {
       console.log(err)
     }
-
+  }
+  /////////////////////////////////////////////
+  //Functions for recipe
+  ////////////////////////////////////////////
+  saveNewRecipesToUser(recipeObject){
+    console.log(recipeObject);
+    //Create a new post request 
+    fetch(this.API_URL + "/recipes", {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json',
+        'authorization': `${localStorage.getItem('access_token')}`
+      },
+      body: recipeObject,
+    }).then( res => ( res.json() ) ).then(returnValue=>console.log(returnValue))
   }
 
 

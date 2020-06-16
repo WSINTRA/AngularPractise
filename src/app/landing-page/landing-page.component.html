@@ -1,8 +1,7 @@
 <div *ngIf="isLoggedIn | async; else elseBlock;">
   <h2>Create a Recipe</h2>
   <app-recipe-form></app-recipe-form>
-  <button>Logout</button>
-  <button>Save Recipe</button>
+  <button (click)="logout()">Logout</button>
 </div>
 
 <ng-template #elseBlock>

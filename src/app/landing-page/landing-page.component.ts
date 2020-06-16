@@ -12,7 +12,10 @@ export class LandingPageComponent implements OnInit {
   constructor(private _sails:SailsService) {
     this.isLoggedIn = _sails.isLoggedIn();
   }
-  
+  logout(){
+    this._sails.logout();
+  }
+ 
   ngOnInit(): void {
   }
   switchLoginRegister(){

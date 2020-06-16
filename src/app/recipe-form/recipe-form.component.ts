@@ -2,7 +2,8 @@ import { Component, Input } from '@angular/core';
 import { RecipeModel } from '../models/recipe.model';
 import { Steps } from '../models/steps.model';
 import {NewRecipe} from '../recipe.service';
-
+import {SailsService} from '../sailsBackEnd.service';
+import { Observable } from "rxjs";
 @Component({
   selector: 'app-recipe-form',
   templateUrl: './recipe-form.component.html',
@@ -10,6 +11,24 @@ import {NewRecipe} from '../recipe.service';
 })
 
 export class RecipeFormComponent {
+
+
+  constructor(private _newRecipe:NewRecipe, private _sails:SailsService ) {
+    this.allUserRecipes = _sails.userData()
+   }
+   getsUserDataAndRecipes() {
+    this._sails.userData().subscribe(user => this.loggedInUserDetails = user);
+ } 
+ ngOnInit() {
+  this.getsUserDataAndRecipes();
+  this.getRecipes();
+} 
+  loggedInUserDetails: any;
+  getRecipes(){
+    this._sails.getCurrentUserData();
+    // console.log(this.loggedInUserDetails, "This should be data")
+  }
+  allUserRecipes : Observable<any>;
   //Creation Mode
   createSteps: boolean = false;
   //Set types for a Recipe
@@ -28,9 +47,8 @@ export class RecipeFormComponent {
   stepDescription: string
   stepImageUrl: string
   stepVideoUrl: string
-
-  constructor(private _newRecipe:NewRecipe ) { }
-
+  
+ 
   newStepsMethod(stepTitleVal, stepDescriptionVal, stepImageUrlVal, stepVideoUrlVal){
     if (!stepTitleVal) {
       return alert("Step must atleast have a title")
@@ -69,7 +87,12 @@ export class RecipeFormComponent {
     this.recipeTitle = "";
     this.recipeCreator = "";
     this.recipeDescription = "";
-    console.log(this.editRecipe, "Submit this to the backend as a JSON token")
+    //Temporarily set this to local storage so I don't have to keep typing in the data
+    // let recipe = JSON.stringify(this.editRecipe)
+    // localStorage.setItem("chippy",recipe)
+    let demoRecipe = localStorage.getItem('chippy');
+    this._sails.saveNewRecipesToUser(demoRecipe)
+    // console.log(this.editRecipe, "Submit this to the backend as a JSON token")
   }
 
 }
