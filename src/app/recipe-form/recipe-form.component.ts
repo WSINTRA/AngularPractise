@@ -50,13 +50,13 @@ export class RecipeFormComponent {
   stepDescription: string
   stepImageUrl: string
   stepVideoUrl: string
-  
+  stepTime: number
  
-  newStepsMethod(stepTitleVal, stepDescriptionVal, stepImageUrlVal, stepVideoUrlVal){
+  newStepsMethod(stepTitleVal, stepDescriptionVal, stepTimeVal, stepImageUrlVal, stepVideoUrlVal){
     if (!stepTitleVal) {
       return alert("Step must atleast have a title")
     }
-    const currentSteps = this._newRecipe.addStepsToRecipe(stepTitleVal, stepDescriptionVal, stepImageUrlVal, stepVideoUrlVal);
+    const currentSteps = this._newRecipe.addStepsToRecipe(stepTitleVal, stepDescriptionVal,stepTimeVal, stepImageUrlVal, stepVideoUrlVal);
     this.editRecipe.steps.push(currentSteps)
     //Remove this console when done
     console.log(this.editRecipe)
@@ -65,6 +65,7 @@ export class RecipeFormComponent {
         //Once submitted reset all variables
         this.stepTitle = "";
         this.stepDescription = "";
+        this.stepTime = null;
         this.stepImageUrl = "";
         this.stepVideoUrl = "";
   }

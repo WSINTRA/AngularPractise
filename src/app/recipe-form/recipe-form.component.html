@@ -36,7 +36,7 @@
   <div class="new-step" *ngIf="createSteps">
     <mat-form-field appearance="fill">
       <mat-label>Step title</mat-label>
-      <input matInput [(ngModel)]="stepTitle" placeholder="Title for step" />
+      <input matInput [(ngModel)]="stepTitle" placeholder="Title" />
     </mat-form-field>
 
     <mat-form-field appearance="fill">
@@ -46,6 +46,10 @@
         [(ngModel)]="stepDescription"
         placeholder="Describe this step"
       ></textarea>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Step time estimate in minutes</mat-label>
+      <input matInput [(ngModel)]="stepTimme" placeholder="Time in min" />
     </mat-form-field>
 
     <mat-form-field appearance="fill">
@@ -69,7 +73,7 @@
     <button
       mat-button
       (click)="
-        newStepsMethod(stepTitle, stepDescription, stepImageUrl, stepVideoUrl)
+        newStepsMethod(stepTitle, stepDescription, stepTime stepImageUrl, stepVideoUrl)
       "
     >
       Add New Step
