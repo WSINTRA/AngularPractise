@@ -1,16 +1,6 @@
 <div class="recipe-page">
   <div class="new-recipe" *ngIf="!createSteps">
     <mat-form-field appearance="fill">
-      <mat-label>Author</mat-label>
-      <input
-        matInput
-        type="text"
-        [(ngModel)]="recipeCreator"
-        placeholder="Name of Author"
-      />
-    </mat-form-field>
-
-    <mat-form-field appearance="fill">
       <mat-label>Title</mat-label>
       <input
         matInput
@@ -28,20 +18,19 @@
       ></textarea>
     </mat-form-field>
 
-    <button mat-button (click)="newRecipeMethod(recipeCreator, recipeTitle, recipeDescription)">Create Recipe Steps</button>
+    <button mat-button (click)="newRecipeMethod(recipeTitle, recipeDescription)">Create Recipe Steps</button>
   </div>
 
   <div class="recipe-list">
-    <h3 *ngIf="allRecipes.length > 1">Header</h3>
-    <button (click)="getRecipes()">GET RECIPES</button>
-    <!-- REPLACE THIS WITH THE FETCHED ARRAY OF USER RECIPES -->
-    
+    <h3 *ngIf="allRecipes">Saved Recipes</h3>
+    <!-- REPLACE THIS WITH LINKS TO RECIPE CARDS -->
     <ul *ngFor="let recipe of loggedInUserDetails.recipes">
-      <li>{{ recipe.title }}</li>
+      <li>{{ recipe.title}}</li>
     </ul>
-    <ul *ngFor="let recipe of allRecipes">
+
+    <!-- <ul *ngFor="let recipe of allRecipes">
       <li>{{ recipe.title }}</li>
-    </ul>
+    </ul> -->
   </div>
 
   <div class="new-step" *ngIf="createSteps">

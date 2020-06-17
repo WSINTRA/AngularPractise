@@ -6,15 +6,14 @@ import { Steps } from './models/steps.model';
 @Injectable()
 export class NewRecipe {
 
-    private userVal: string; titleVal: string; descriptionVal: string; stepArray: any
+    private titleVal: string; descriptionVal: string; stepArray: any
     
-    createRecipe(user, title, description) {
+    createRecipe( title, description) {
         //Create a new blank recipe model
-        let currentRecipe = new RecipeModel(this.userVal, this.titleVal, this.descriptionVal, this.stepArray)
+        let currentRecipe = new RecipeModel( this.titleVal, this.descriptionVal, this.stepArray)
         //Set the new Values
         currentRecipe.description = description;
         currentRecipe.title = title;
-        currentRecipe.user = user;
         currentRecipe.steps = [];
         return currentRecipe
     }

@@ -20,13 +20,16 @@ export class RecipeFormComponent {
     this._sails.userData().subscribe(user => this.loggedInUserDetails = user);
  } 
  ngOnInit() {
-  this.getsUserDataAndRecipes();
   this.getRecipes();
 } 
-  loggedInUserDetails: any;
+  loggedInUserDetails: any
   getRecipes(){
-    this._sails.getCurrentUserData();
-    // console.log(this.loggedInUserDetails, "This should be data")
+    //calls fetch to the backend
+    this._sails.getCurrentUserData()
+    this.getsUserDataAndRecipes();
+    // this.allUserRecipes.subscribe(recipeValue=> {
+    //   this.loggedInUserDetails = recipeValue;
+    // })
   }
   allUserRecipes : Observable<any>;
   //Creation Mode
@@ -36,11 +39,11 @@ export class RecipeFormComponent {
   recipeCreator: string;
   recipeDescription: string;
   //Replace this, or fill it with the user.steps array from the backend
-  allRecipes: any[] = [];
+  allRecipes= [];
   //probably not the best way to do this but since I am just learning and trying to figure Angular out
   //make an object that will act as a temp holder for whatever the last recipe created was, then...
   //a new Recipe is initialized, open up the new steps form based on the createSteps boolean, then close, done
-  editRecipe = {user: "", title:"", description:"",steps:[] };
+  editRecipe = { title:"", description:"",steps:[] };
   //this array must hold newly added Steps
   showSteps = []
   stepTitle: string
@@ -66,14 +69,13 @@ export class RecipeFormComponent {
         this.stepVideoUrl = "";
   }
   newRecipeMethod(
-    recipeCreator: string,
     recipeTitle: string,
     recipeDescription: string,
     ){
       if (!recipeTitle) {
         return alert("Recipe must atleast have a title")
       }
-    const currentRecipe = this._newRecipe.createRecipe(recipeCreator,recipeTitle, recipeDescription,);
+    const currentRecipe = this._newRecipe.createRecipe(recipeTitle, recipeDescription,);
     this.allRecipes.push(currentRecipe)
     this.createSteps = true;
     this.editRecipe = currentRecipe;
