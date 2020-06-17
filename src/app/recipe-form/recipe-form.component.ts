@@ -29,6 +29,8 @@ export class RecipeFormComponent {
     // Only happens when access token is used to fetch backend data, could be the way I am subscribing or using data state?
     if(localStorage.getItem('access_token')){
       this._sails.getCurrentUserData()
+      //Hack to fix the bug above, give it a second before rendering
+      setTimeout(()=>this.listRecipes = true,1000)
     }
     //Calls the subscribed user data for any changes
     this.getsUserDataAndRecipes();
@@ -41,8 +43,7 @@ export class RecipeFormComponent {
   recipeTitle: string;
   recipeCreator: string;
   recipeDescription: string;
-  //Replace this, or fill it with the user.steps array from the backend
-  // allRecipes= [];
+  listRecipes = false;
   //probably not the best way to do this but since I am just learning and trying to figure Angular out
   //make an object that will act as a temp holder for whatever the last recipe created was, then...
   //a new Recipe is initialized, open up the new steps form based on the createSteps boolean, then close, done

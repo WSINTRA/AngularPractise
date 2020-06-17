@@ -22,15 +22,15 @@
   </div>
 
   <div class="recipe-list">
-    <h3>Saved Recipes</h3>
-    <!-- REPLACE THIS WITH LINKS TO RECIPE CARDS -->
+    <div *ngIf="listRecipes; else noRecipes">
+      <h3>Saved Recipes</h3>
     <ul *ngFor="let recipe of loggedInUserDetails.recipes">
       <li>{{ recipe.title}}</li>
     </ul>
-
-    <!-- <ul *ngFor="let recipe of allRecipes">
-      <li>{{ recipe.title }}</li>
-    </ul> -->
+  </div>
+  <ng-template #noRecipes>
+    <h3>I'm hungry</h3>
+  </ng-template>
   </div>
 
   <div class="new-step" *ngIf="createSteps">
