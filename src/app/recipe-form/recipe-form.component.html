@@ -22,7 +22,7 @@
   </div>
 
   <div class="recipe-list">
-    <h3 *ngIf="allRecipes">Saved Recipes</h3>
+    <h3>Saved Recipes</h3>
     <!-- REPLACE THIS WITH LINKS TO RECIPE CARDS -->
     <ul *ngFor="let recipe of loggedInUserDetails.recipes">
       <li>{{ recipe.title}}</li>
@@ -49,7 +49,7 @@
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>Step time estimate in minutes</mat-label>
-      <input matInput [(ngModel)]="stepTimme" placeholder="Time in min" />
+      <input matInput [(ngModel)]="stepTime" placeholder="Time in min" />
     </mat-form-field>
 
     <mat-form-field appearance="fill">
@@ -73,7 +73,7 @@
     <button
       mat-button
       (click)="
-        newStepsMethod(stepTitle, stepDescription, stepTime stepImageUrl, stepVideoUrl)
+        newStepsMethod(stepTitle, stepDescription,stepImageUrl, stepVideoUrl, stepTime)
       "
     >
       Add New Step

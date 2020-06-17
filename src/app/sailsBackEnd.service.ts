@@ -40,6 +40,7 @@ export class SailsService {
   /////////////////////////////////////////////////////////////
   //Functions for interacting with backend
   /////////////////////////////////////////////////////////////
+  //Call made to the backend if a user token is available
   getCurrentUserData() {
     fetch(this.API_URL + '/recipes', {
       method: "GET",
@@ -134,8 +135,8 @@ export class SailsService {
   /////////////////////////////////////////////
   //Functions for recipe
   ////////////////////////////////////////////
-  saveNewRecipesToUser(recipeObject){
-    console.log(recipeObject);
+  saveNewRecipesToUser(recipeObject) {
+    // console.log(recipeObject);
     //Create a new post request 
     fetch(this.API_URL + "/recipes", {
       method: "POST",
@@ -144,7 +145,15 @@ export class SailsService {
         'authorization': `${localStorage.getItem('access_token')}`
       },
       body: recipeObject,
-    }).then( res => ( res.json() ) ).then(returnValue=>console.log(returnValue))
+      //TODO: add this to the currentUser recipes array
+    }).then(res => (res.json())).then(returnValue => {
+      let username = localStorage.getItem('username')
+      this.userDataResponse.recipes.push(returnValue)
+      // this.userDataResponse = { 'user': username, 'recipes': returnValue }
+      this.watchedUserData.next(this.userDataResponse)
+      console.log(returnValue)
+    }
+    )
   }
 
 

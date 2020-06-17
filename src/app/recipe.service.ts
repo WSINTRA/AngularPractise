@@ -17,9 +17,9 @@ export class NewRecipe {
         currentRecipe.steps = [];
         return currentRecipe
     }
-    addStepsToRecipe( stepTitleVal, stepDescriptionVal, stepTimeVal, stepImageUrlVal, stepVideoUrlVal) {
+    addStepsToRecipe( stepTitleVal, stepDescriptionVal, stepImageUrlVal, stepVideoUrlVal,stepTimeVal,) {
         //Create a new step with incoming params
-        let newStep = new Steps(stepTitleVal, stepDescriptionVal,stepTimeVal, stepImageUrlVal, stepVideoUrlVal)
+        let newStep = new Steps(stepTitleVal, stepDescriptionVal, stepImageUrlVal, stepVideoUrlVal,stepTimeVal,)
         
         return newStep
     }
