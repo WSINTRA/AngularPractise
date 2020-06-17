@@ -1,3 +1,4 @@
+<app-header></app-header>
 <div class="recipe-page">
   <div class="new-recipe" *ngIf="!createSteps">
     <mat-form-field appearance="fill">
@@ -20,19 +21,6 @@
 
     <button mat-button (click)="newRecipeMethod(recipeTitle, recipeDescription)">Create Recipe Steps</button>
   </div>
-
-  <div class="recipe-list">
-    <div *ngIf="listRecipes; else noRecipes">
-      <h3>Saved Recipes</h3>
-    <ul *ngFor="let recipe of loggedInUserDetails.recipes">
-      <li>{{ recipe.title}}</li>
-    </ul>
-  </div>
-  <ng-template #noRecipes>
-    <h3>I'm hungry</h3>
-  </ng-template>
-  </div>
-
   <div class="new-step" *ngIf="createSteps">
     <mat-form-field appearance="fill">
       <mat-label>Step title</mat-label>
@@ -84,6 +72,17 @@
     <ul *ngFor="let step of showSteps">
       <li>{{ step.title }}</li>
     </ul>
+  </div>
+  <div class="container recipe-list">
+    <div *ngIf="listRecipes; else noRecipes">
+      <h3>Saved Recipes</h3>
+    <ul *ngFor="let recipe of loggedInUserDetails.recipes; let i = index">
+      <li>{{(i+1) + ":" + recipe.title}}</li>
+    </ul>
+  </div>
+  <ng-template #noRecipes>
+    <h3>I'm hungry</h3>
+  </ng-template>
   </div>
 
 </div>

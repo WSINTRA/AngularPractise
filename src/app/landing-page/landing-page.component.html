@@ -1,7 +1,5 @@
 <div *ngIf="isLoggedIn | async; else elseBlock;">
-  <h2>Create a Recipe</h2>
   <app-recipe-form></app-recipe-form>
-  <button (click)="logout()">Logout</button>
 </div>
 
 <ng-template #elseBlock>
@@ -20,3 +18,4 @@
   </div>
 </ng-template>
 
+<!-- <app-recipe></app-recipe> -->

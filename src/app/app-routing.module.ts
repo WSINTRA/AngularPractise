@@ -3,10 +3,12 @@ import { Routes, RouterModule } from '@angular/router';
 import { RecipeFormComponent } from './recipe-form/recipe-form.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { PageNotFoundComponent} from './page-not-found/page-not-found.component';
+import { RecipeComponent } from './recipe/recipe.component';
 
 const routes: Routes = [
   { path: 'welcome', component: LandingPageComponent },
   { path: 'recipe-form', component: RecipeFormComponent },
+  { path: 'recipe-list', component: RecipeComponent },
   { path: '',   redirectTo: '/welcome', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
 ];

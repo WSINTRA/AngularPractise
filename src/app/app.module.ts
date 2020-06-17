@@ -14,6 +14,13 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { HttpClientModule } from '@angular/common/http';
 import {NewRecipe} from './recipe.service';
 import {SailsService} from './sailsBackEnd.service';
+import { HeaderComponent } from './header/header.component';
+import { RecipeComponent } from './recipe/recipe.component';
+import { RecipeStepComponent } from './recipe-step/recipe-step.component';
+import { RecipeListComponent } from './recipe-list/recipe-list.component';
+import { StepComponent } from './recipe-step/step/step.component';
+import { StepListComponent } from './recipe-step/step-list/step-list.component';
+import { RecipeInfoComponent } from './recipe/recipe-info/recipe-info.component';
 
 
 @NgModule({
@@ -24,6 +31,13 @@ import {SailsService} from './sailsBackEnd.service';
     SignupComponent,
     RecipeFormComponent,
     PageNotFoundComponent,
+    HeaderComponent,
+    RecipeComponent,
+    RecipeStepComponent,
+    RecipeListComponent,
+    StepComponent,
+    StepListComponent,
+    RecipeInfoComponent,
   ],
   imports: [
     FormsModule,

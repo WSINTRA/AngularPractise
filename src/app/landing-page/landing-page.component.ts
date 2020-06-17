@@ -8,19 +8,16 @@ import { Observable } from "rxjs";
   styleUrls: ['./landing-page.component.scss']
 })
 export class LandingPageComponent implements OnInit {
-  isLoggedIn : Observable<boolean>;
+  
   constructor(private _sails:SailsService) {
     this.isLoggedIn = _sails.isLoggedIn();
   }
-  logout(){
-    this._sails.logout();
-  }
- 
+  //Make this element accessible to children
+  @Input() isLoggedIn : Observable<boolean>;
   ngOnInit(): void {
   }
   switchLoginRegister(){
     this.loginRegister = !this.loginRegister;
   }
   loginRegister: boolean = false;
-
 }
