@@ -1,1 +1,22 @@
-<p>step works!</p>
+<mat-card class="card" *ngIf="stepInView">
+  <mat-card-title>
+    {{ stepInView.title }}
+  </mat-card-title>
+  <mat-card-content>
+    {{ stepInView.description }}
+    <youtube-player
+    *ngIf="stepInView.videoUrl"
+      suggestedQuality="highres"
+      [height]="200"
+      [width]="300"
+      videoId="{{ stepInView.videoUrl | getVideoID }}"
+    ></youtube-player>
+  </mat-card-content>
+  <img
+    *ngIf="stepInView.imageUrl"
+    mat-card-image
+    class="img"
+    src="{{ stepInView.imageUrl }}"
+    alt="{{ stepInView.title }}"
+  />
+</mat-card>

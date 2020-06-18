@@ -10,13 +10,20 @@ export class StepListComponent implements OnInit {
 
   constructor(private _steps: RecipeStep) {
     this.allRecipesSteps = this._steps.getStepData()
-   }
+  }
   allRecipesSteps
   ngOnInit(): void {
-    this.showSteps()
+   
+      this.showSteps()
+ 
   }
-showSteps(){
-  this.allRecipesSteps.subscribe(steps=> this.currentSteps = steps)
-}
-currentSteps;
+  showSteps() {
+    this.allRecipesSteps.subscribe(steps => this.currentSteps = steps)
+  }
+  currentSteps;
+  selectedStep;
+  passThisStepToView(nextStep) {
+    this._steps.setCurrentStepToView(nextStep);
+    this.selectedStep = nextStep;
+  }
 }

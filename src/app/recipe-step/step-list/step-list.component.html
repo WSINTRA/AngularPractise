@@ -1,6 +1,6 @@
-<div *ngFor="let stepTitle of currentSteps">
-
-    <h3>{{stepTitle.title}}</h3>
+<mat-list role="list" *ngFor="let step of currentSteps">
+<!-- These should be selectedable and the one selected should highlight a different color -->
+    <mat-list-item role="listitem" (click)="passThisStepToView(step)">{{step.title}}</mat-list-item>
     
-</div>
+</mat-list>
 
