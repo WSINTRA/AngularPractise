@@ -2,10 +2,12 @@ import { Component, Input } from '@angular/core';
 import {NewRecipe} from '../recipe.service';
 import {SailsService} from '../sailsBackEnd.service';
 import { Observable } from "rxjs";
+import { provideRoutes } from '@angular/router';
 @Component({
   selector: 'app-recipe-form',
   templateUrl: './recipe-form.component.html',
-  styleUrls: ['./recipe-form.component.scss']
+  styleUrls: ['./recipe-form.component.scss'],
+  
 })
 
 export class RecipeFormComponent {
