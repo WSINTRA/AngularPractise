@@ -38,6 +38,8 @@ Steps have a title, a description, and a video url or a image url.
 To render the video I used the angular youtube video module, I then use a pipe to get the url id from the string. 
 
 >Final thoughts
+
+
 I have learnt a lot about Angular and Sails and regardless of the outcome of the code challenge I will continue learning Angular and brush up on the foundational knowledge I had to scan over. Angular is a powerful framework and one I hope to become more proficient in. 
 
 [Link to backend REPO - no README yet](https://github.com/WSINTRA/sails_apprentice.io)
