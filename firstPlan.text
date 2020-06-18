@@ -1,0 +1,65 @@
+Angular App - Create new Recipe
+
+A user has many recipes, and a recipe can be added to any user, 
+User many-2-many recipe
+A recipe has many steps
+
+example..
+recipe = {
+	title: String
+	description: String
+	stepsCount: Int
+	steps: [
+		{title: String, 
+		description: String, 
+		image-url: String
+		video-url: String
+		additional-url: String}, 
+			]
+}
+
+Use Angular and Material...
+first page -> 
+	Welcome header ->
+	SignUp / Login Either create a new username and password, or login with current username and password
+	Button -> continue
+
+//Save newUser to Sails DB, or login current user.
+
+Active page -> 
+	Current recipes list -> 
+		Each recipe is a link to recipe execution page
+	Button -> Create a new recipe ~
+
+Recipe page -> 
+	Header recipe title ->
+	Paragraph recipe description ->
+	Button begin recipe ->
+		Steps page ->
+			Header Step title->
+			paragraph Step description->
+			image render ->
+			video render ->
+			additional render ->
+		
+		if final step ->
+			Button Active page ~
+
+Create a new recipe -> 
+	What is the title of this recipe ? ->
+	What is the description of this recipe ? ->
+		Add new step->
+			Step[n] -> 
+				title->
+				description->
+				image-url (optional) ->
+				video-url (optional) ->
+				additional-url (optional) -> 
+				finished ? yes - no
+
+			if yes ->
+				create an object with a title, a description and a step object
+			if no -> 
+				repeat Add new step ~
+
+Each new recipe is then saved to the user account
