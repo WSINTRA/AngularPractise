@@ -50,6 +50,7 @@ export class SailsService {
       }
     }).then(res => (res.json())).then(returnData => {
       this.userDataResponse = { 'user': localStorage.getItem('username'), 'recipes': returnData }
+      console.log(returnData)
       this.watchedUserData.next(this.userDataResponse)
     });
   }
