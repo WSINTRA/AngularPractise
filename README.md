@@ -30,6 +30,7 @@ A recipe belonged to a user and a step belonged to a recipe. A recipe can have m
 The further I got into the project the more my frustrations with Angulars way of doing things eased off. I still prefer React but I think Angular can be a lot more powerful having experienced some of its power. I found its complexity to be off putting, this is why I wish to go back and get a grasp on the basics to reduce that complexity feeling. 
 Overall I have creating an App that meets the criteria, it has plenty of room for improvement and I could spend another week or 2 working out the bugs I have introduced by not knowing the basics. A lot of times If I came across a problem, I used the sledge hammer approach, this is not ideal in the real world but I wanted to see how I could get something done in time. 
 TODO: Make a video demo of the app as it currently is and link it to here.
+[https://youtu.be/BVNHuccafOE](https://youtu.be/BVNHuccafOE)
 TODO: Work on the frontend UI, currently it leaves a lot to be desired.
 The app consists of a login or signup, once logged in a header and nav bar allow the user to switch between adding new recipes or viewing current ones. 
 Recipes have a title and description and steps.
