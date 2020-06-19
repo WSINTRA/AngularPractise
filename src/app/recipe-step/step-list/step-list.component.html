@@ -1,6 +1,6 @@
-<mat-list role="list" *ngFor="let step of currentSteps">
+<mat-list class="list-group" role="list" *ngFor="let step of currentSteps">
 <!-- These should be selectedable and the one selected should highlight a different color -->
-    <mat-list-item role="listitem" (click)="passThisStepToView(step)">{{step.title}}</mat-list-item>
+    <mat-list-item class="list-group-item" role="listitem" (click)="passThisStepToView(step)">{{step.title}}</mat-list-item>
     
 </mat-list>
 

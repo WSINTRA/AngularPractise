@@ -27,6 +27,7 @@ export class RecipeStep {
         this.watchedStepData.next(this.currentStep)
     }
     setCurrentRecipeToView(steps) {
+        // console.log(steps,"This should show steps");
         this.stepsInView = steps
         this.watchedUserData.next(this.stepsInView)
     }

@@ -14,10 +14,10 @@ export class RecipeInfoComponent implements OnInit {
   }
   
   getRecipeSteps(steps){
+    // console.log(steps, "This should have steps array")
     this._recipeStep.setCurrentRecipeToView(steps)
   }
   
-  @Input() element:{title:string, description:string, steps:any};
-  
-  // @Input() selection;
+  @Input() element:{title:string, description:string, steps:[]};
+
 }
