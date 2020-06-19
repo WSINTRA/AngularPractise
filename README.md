@@ -32,7 +32,7 @@ Overall I have creating an App that meets the criteria, it has plenty of room fo
 
 TODO: Make a video demo of the app as it currently is and link it to here.
 
-[https://youtu.be/BVNHuccafOE](https://youtu.be/BVNHuccafOE)
+[https://youtu.be/IwkiMYu15QQ](https://youtu.be/IwkiMYu15QQ)
 
 TODO: Work on the frontend UI, currently it leaves a lot to be desired.
 
