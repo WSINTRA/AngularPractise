@@ -32,6 +32,11 @@ Overall I have creating an App that meets the criteria, it has plenty of room fo
 
 TODO: Make a video demo of the app as it currently is and link it to here.
 
+<<<<<<< HEAD
+=======
+[https://youtu.be/BVNHuccafOE](https://youtu.be/BVNHuccafOE)
+
+>>>>>>> 19ac652efab32e9c4fc06e5f4208bfda8faec247
 TODO: Work on the frontend UI, currently it leaves a lot to be desired.
 
 The app consists of a login or signup, once logged in a header and nav bar allow the user to switch between adding new recipes or viewing current ones. 
