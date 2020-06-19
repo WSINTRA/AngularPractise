@@ -11,7 +11,6 @@ export class LoginComponent implements OnInit {
   constructor(private _sails:SailsService) {
   }
 
- 
   ngOnInit(): void {
   }
   loginNameControl = new FormControl('');
@@ -21,6 +20,5 @@ onSubmit(){
     let username = this.loginNameControl.value
     let password = this.loginPassControl.value 
     this._sails.userLogin(username, password);
-    
   }
 }

@@ -73,16 +73,5 @@
       <li>{{ step.title }}</li>
     </ul>
   </div>
-  <div class="container recipe-list">
-    <div *ngIf="listRecipes; else noRecipes">
-      <h3>Saved Recipes</h3>
-    <ul *ngFor="let recipe of loggedInUserDetails.recipes; let i = index">
-      <li>{{(i+1) + ":" + recipe.title}}</li>
-    </ul>
-  </div>
-  <ng-template #noRecipes>
-    <h3>I'm hungry</h3>
-  </ng-template>
-  </div>
 
 </div>

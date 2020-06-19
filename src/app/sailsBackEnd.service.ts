@@ -7,20 +7,20 @@ import { BehaviorSubject, Observable } from "rxjs";
 
 export class SailsService {
   //opiniated framework wants me to use HttpClient ?
+  //TODO: Change fetch method to the expected HttpClient
   constructor() { }
+
   private API_URL: string = "http://localhost:1337";
   //Learning that Angular uses observables for persisting variables across the app
+  //isLoggedIn() is called from landing-page
+  //which in turn returns the observable of the isLoginSubject
+  //it is observing if there is a token in local storage
   isLoginSubject = new BehaviorSubject<boolean>(this.hasToken());
-
   private hasToken(): boolean {
     if (localStorage['access_token']) {
       return true
     }
     return false;
-  }
-  //Method for checking if a user is already logged in
-  public get loggedIn(): boolean {
-    return localStorage.getItem('access_token') !== null;
   }
   isLoggedIn(): Observable<boolean> {
     return this.isLoginSubject.asObservable();
@@ -46,20 +46,23 @@ export class SailsService {
       method: "GET",
       headers: {
         'Content-Type': 'application/json',
+        //Custom header created in the Sails backend
         'authorization': localStorage.getItem('access_token')
       }
     }).then(res => (res.json())).then(returnData => {
+      //userDataResponse uses the localStorage username
       this.userDataResponse = { 'user': localStorage.getItem('username'), 'recipes': returnData }
-      console.log(returnData)
+      // console.log(returnData)
       this.watchedUserData.next(this.userDataResponse)
     });
   }
+
   //////////////////////////////////////////////
   //Login Function using fetch is called from login component as a service
   ///////////////////////////////////////////////
-  userLogin(username, password) {
+  userLogin(username: string, password: string) {
     //Create a data object for name and password to send to backend
-    let data = { 'name': username, 'password': password }
+    let data = { 'name': username, 'password': password };
     //Communicate with server or error out
     try {
       //Send a login request to the local server and store the JSON webtoken
@@ -72,19 +75,11 @@ export class SailsService {
         //Check that the server had any errors   
       }).then(res => res.json()).catch(err => {
         alert("Invalid username or password")
-
       }
       )
         .then(serverResponse => {
           //Save response as token and user details including the recipes associated with user
-          //Store token in localStorage, probably not the best but will work for now
-          this.JSONtoken = serverResponse.token;
-          localStorage.setItem('access_token', this.JSONtoken);
-          localStorage.setItem('username', serverResponse.user.name);
-          this.isLoginSubject.next(true);
-          //Set the data to Observable
-          this.userDataResponse = { 'user': serverResponse.user.name, 'recipes': serverResponse.recipes }
-          this.watchedUserData.next(this.userDataResponse)
+          this.manageUserToken(serverResponse)
         })
     }
     catch (error) {
@@ -118,20 +113,24 @@ export class SailsService {
           //Check that the server had any errors
           //TODO: Make this a better error message
           if (serverResponse.err) {
-            return alert("There was an error")
+            return alert("User already exists, or we had an internal server error, try again with a different name")
           }
-          this.JSONtoken = serverResponse.token;
-          //Store token in localStorage, probably not the best but will work for now
-          localStorage.setItem('access_token', this.JSONtoken);
-          this.isLoginSubject.next(true);
-          //Set the data to Observable
-          this.userDataResponse = { 'user': serverResponse.user.name, 'recipes': serverResponse.recipes }
-          this.watchedUserData.next(this.userDataResponse)
+          this.manageUserToken(serverResponse)
         })
     }
     catch (err) {
       console.log(err)
     }
+  }
+  manageUserToken(serverResponse) {
+    this.JSONtoken = serverResponse.token;
+    //Store token in localStorage, probably not the best but will work for now
+    localStorage.setItem('access_token', this.JSONtoken);
+    localStorage.setItem('username', serverResponse.user.name);
+    this.isLoginSubject.next(true);
+    //Set the data to Observable
+    this.userDataResponse = { 'user': serverResponse.user.name, 'recipes': serverResponse.recipes }
+    this.watchedUserData.next(this.userDataResponse)
   }
   /////////////////////////////////////////////
   //Functions for recipe

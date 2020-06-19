@@ -1,5 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-
+import { Component, OnInit, } from '@angular/core';
+import {SailsService} from '../sailsBackEnd.service';
 @Component({
   selector: 'app-recipe-step',
   templateUrl: './recipe-step.component.html',
@@ -7,10 +7,10 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class RecipeStepComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _sails:SailsService ) { }
 
   ngOnInit(): void {
-    
+    this._sails.getCurrentUserData()
   }
 
 }

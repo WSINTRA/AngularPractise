@@ -15,7 +15,6 @@ export class SignupComponent implements OnInit {
   signupNameControl = new FormControl('');
   signupPassControl = new FormControl('');
   onSubmit() {
-    //make this submit the values to the backend
     let username = this.signupNameControl.value
     let password = this.signupPassControl.value 
     this._sails.userSignup(username, password);

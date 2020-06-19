@@ -12,12 +12,17 @@ export class LandingPageComponent implements OnInit {
   constructor(private _sails:SailsService) {
     this.isLoggedIn = _sails.isLoggedIn();
   }
-  //Make this element accessible to children
-  @Input() isLoggedIn : Observable<boolean>;
+  
+  isLoggedIn : Observable<boolean>;
   ngOnInit(): void {
+    if(localStorage.getItem('access_token')){
+      //calls the fetch to the backend if user is already logged in with token
+      this._sails.getCurrentUserData()
+    }
   }
   switchLoginRegister(){
     this.loginRegister = !this.loginRegister;
   }
   loginRegister: boolean = false;
+  
 }

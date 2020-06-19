@@ -28,7 +28,6 @@ export class RecipeStep {
     }
     setCurrentRecipeToView(steps) {
         this.stepsInView = steps
-        
         this.watchedUserData.next(this.stepsInView)
     }
 }

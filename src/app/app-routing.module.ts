@@ -5,6 +5,7 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
 import { PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import { RecipeComponent } from './recipe/recipe.component';
 
+
 const routes: Routes = [
   { path: 'welcome', component: LandingPageComponent },
   { path: 'recipe-form', component: RecipeFormComponent },
