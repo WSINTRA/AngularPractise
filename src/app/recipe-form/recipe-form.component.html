@@ -1,8 +1,9 @@
 <app-header></app-header>
 <div class="recipe-page">
-  <div class="new-recipe" *ngIf="!createSteps">
+  <div *ngIf="!createSteps" class="box-contents">
+  <div class="new-recipe">
     <mat-form-field appearance="fill">
-      <mat-label>Title</mat-label>
+      <mat-label>Recipe title</mat-label>
       <input
         matInput
         [(ngModel)]="recipeTitle"
@@ -19,9 +20,12 @@
       ></textarea>
     </mat-form-field>
 
-    <button mat-button (click)="newRecipeMethod(recipeTitle, recipeDescription)">Create Recipe Steps</button>
+    <button mat-button [ngStyle]="{backgroundColor:'coral'}" (click)="newRecipeMethod(recipeTitle, recipeDescription)">Create New Recipe</button>
   </div>
+</div>
+<div class="box-contents">
   <div class="new-step" *ngIf="createSteps">
+    <h2>Add some steps!</h2>
     <mat-form-field appearance="fill">
       <mat-label>Step title</mat-label>
       <input matInput [(ngModel)]="stepTitle" placeholder="Title" />
@@ -64,10 +68,11 @@
         newStepsMethod(stepTitle, stepDescription,stepImageUrl, stepVideoUrl, stepTime)
       "
     >
-      Add New Step
-    </button>
-    <button mat-button (click)="handleFinishedSteps()">Finished</button>
+      Add New Step?
+    </button><br/>
+    <button [ngStyle]="{backgroundColor:'coral'}" mat-button (click)="handleFinishedSteps()">Save Recipe</button>
   </div>
+</div>
   <div>
     <ul *ngFor="let step of showSteps">
       <li>{{ step.title }}</li>
