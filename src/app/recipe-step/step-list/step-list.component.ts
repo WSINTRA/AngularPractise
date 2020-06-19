@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit,} from '@angular/core';
 import { RecipeStep } from '../../recipeStep.service';
 
 @Component({
@@ -13,15 +13,13 @@ export class StepListComponent implements OnInit {
   }
   allRecipesSteps
   ngOnInit(): void {
-   
       this.showSteps()
- 
   }
   showSteps() {
     this.allRecipesSteps.subscribe(steps => this.currentSteps = steps)
   }
-  currentSteps;
-  selectedStep;
+  currentSteps:[];
+  selectedStep:{};
   passThisStepToView(nextStep) {
     this._steps.setCurrentStepToView(nextStep);
     this.selectedStep = nextStep;

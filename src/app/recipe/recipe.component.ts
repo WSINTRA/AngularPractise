@@ -17,6 +17,4 @@ export class RecipeComponent implements OnInit {
   }
   currentUserWatch;
   currentUser;
-
-
 }
